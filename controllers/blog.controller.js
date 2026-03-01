@@ -1,4 +1,5 @@
 const Blog = require("../models/blog.model");
+const Comment = require("../models/comment.model");
 
 async function handleBlog(req, res) {
   try {
@@ -18,10 +19,12 @@ async function handleBlog(req, res) {
 
 async function getBlog(req,res){
   const blog = await Blog.findById(req.params.id).populate('createdBy');
+  const comments = await Comment.find({ blogId: req.params.id}).populate('createdBy');
   console.log("blog",blog);
   return res.render('blog',{
     user:req.user,
-    blog
+    blog,
+    comments
   })
 }
 

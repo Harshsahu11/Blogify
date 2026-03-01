@@ -7,6 +7,7 @@ const {connectDB} = require('./db/db');
 const userRoute = require('./routes/user.router');
 const cookieParser = require('cookie-parser');
 const { checkAuth } = require("./middlewares/auth.middleware");
+const blogRoute = require("./routes/blog.router");
 
 
 app.set("view engine", "ejs");
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use(checkAuth("token"));
 
 app.use('/user',userRoute);
+app.use('/blog',blogRoute);
 
 app.get("/", (req, res) => {
   res.render("Home",{

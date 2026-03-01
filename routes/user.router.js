@@ -1,10 +1,11 @@
 const express = require("express");
+const router = express.Router();
+
 const {
   handleSignUp,
   handleSignIn,
   handleLogout,
 } = require("../controllers/user.controller");
-const router = express.Router();
 
 router.get("/signin", (req, res) => {
   return res.render("signin");

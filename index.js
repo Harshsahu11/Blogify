@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -6,7 +8,6 @@ const userRoute = require('./routes/user.router');
 const cookieParser = require('cookie-parser');
 const { checkAuth } = require("./middlewares/auth.middleware");
 
-require("dotenv").config();
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));

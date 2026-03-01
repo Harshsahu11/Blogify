@@ -7,15 +7,24 @@ async function handleBlog(req, res) {
       title,
       body,
       createdBy: req.user._id,
-      coverImage: `/uploads/${req.user._id}/${req.file.filename}`,
+      coverImage: `/uploads/${req.file.filename}`,
     });
-    return res.redirect(`/blog/${blog._id}`);
+    return res.redirect(`/`);
   } catch (error) {
     console.error(error);
     return res.status(500).send("Error creating blog");
   }
 }
 
+async function getBlog(req,res){
+  const blog = await Blog.findById(req.params.id);
+  return res.render('blog',{
+    user:req.user,
+    blog
+  })
+}
+
 module.exports = {
   handleBlog,
+  getBlog
 };

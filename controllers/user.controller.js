@@ -21,7 +21,7 @@ async function handleSignUp(req, res) {
       password: hashedPassword,
     });
 
-    return res.redirect("/signin");
+    return res.redirect("/user/signin");
   } catch (error) {
     return res.render("signup", {
       error: "Something went wrong",
